@@ -1,0 +1,28 @@
+{
+  "name": "node-mail",
+  "version": "1.0.0",
+  "description": "Simplest Node Mail example that works",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hereshem/Node-Mail.git"
+  },
+  "keywords": [
+    "node",
+    "mail",
+    "app"
+  ],
+  "author": "Hem Shrestha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hereshem/Node-Mail/issues"
+  },
+  "homepage": "https://github.com/hereshem/Node-Mail#readme",
+  "dependencies": {
+    "nodemailer": "^6.6.3"
+  }
+}
