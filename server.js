@@ -1,5 +1,5 @@
 HOST = process.env.HOST || "0.0.0.0"; // localhost
-PORT = process.env.PORT || 8000;
+PORT = process.env.PORT || 3000;
 
 // when the daemon started
 var starttime = (new Date()).getTime();
@@ -42,17 +42,22 @@ fu.get("/send", function (req, res) {
     var to = query.to || 'hereshem@gmail.com';
     var subject = query.subject || 'Test email from Node';
     var text = query.text || '<h1>Example HTML Message Body for Node</h1>';
-    console.log("sending mail for " + to)
+    var from = process.env.MAIL_FROM || 'Node Mail <hereshem@gmail.com>'
+    var host = process.env.MAIL_HOST || "smtp.google.com"
+    var port = process.env.MAIL_PORT || 587
+    var secure = process.env.MAIL_SECURE || port === 465;
+    console.log("sending mail for " + to + " from " + from);
     var transporter = nodemailer.createTransport({
-        host: process.env.MAIL_HOST || "smtp.google.com",
-        port: process.env.MAIL_PORT || 587,
+        host: host,
+        port: port,
+        secure: secure,
         auth: {
             user: process.env.MAIL_USER,
             pass: process.env.MAIL_PASS,
         }
     });
     transporter.sendMail({
-        from: process.env.MAIL_FROM || 'Node Mail <hereshem@gmail.com>',
+        from: from,
         to: to,
         subject: subject,
         html: text
